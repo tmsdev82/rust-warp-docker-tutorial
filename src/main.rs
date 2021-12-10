@@ -1,9 +1,11 @@
+use std::fs;
 use warp::Filter;
 
 #[tokio::main]
 async fn main() {
     println!("Starting server...");
-    let root = warp::path::end().map(|| "Welcome to my efficiently dockerized new warp server!");
+    let text_msg = fs::read_to_string("data/data.txt").expect("could not read file");
+    let root = warp::path::end().map(move || text_msg.clone());
 
     let routes = root.with(warp::cors().allow_any_origin());
 
