@@ -3,9 +3,9 @@ use warp::Filter;
 #[tokio::main]
 async fn main() {
     println!("Starting server...");
-    let root = warp::path::end().map(|| "Welcome to my warp server!");
+    let root = warp::path::end().map(|| "Welcome to my efficiently dockerized new warp server!");
 
     let routes = root.with(warp::cors().allow_any_origin());
 
-    warp::serve(routes).run(([127, 0, 0, 1], 5000)).await;
+    warp::serve(routes).run(([0, 0, 0, 0], 5000)).await;
 }
